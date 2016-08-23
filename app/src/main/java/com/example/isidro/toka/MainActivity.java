@@ -26,17 +26,51 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("TAG", "ON CREATE");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         button = (Button) findViewById(R.id.button);
         textView = (TextView) findViewById(R.id.textView);
 
+        startLocationService();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case 10:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    configureButton();
+                }
+                return;
+        }
+    }
+
+    private void configureButton() {
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                locationManager.requestLocationUpdates("gps", 2000, 0, locationListener);
+            }
+        });
+    }
+
+    @Override
+    protected void onPause() {
+        Log.d("TAG", "ON PAUSE");
+
+        super.onPause();
+        stopLocationUpdates();
+    }
+
+    public void startLocationService() {
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                textView.append("\n " + location.getLongitude() + " " + location.getLatitude());
+                textView.setText(location.getLongitude() + " " + location.getLatitude());
                 Log.d("TAG", "LOCATION CALLED");
             }
 
@@ -66,49 +100,23 @@ public class MainActivity extends AppCompatActivity {
         } else {
             configureButton();
         }
-
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        switch (requestCode) {
-            case 10:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    configureButton();
-                }
-                return;
-        }
-    }
-
-    private void configureButton() {
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                locationManager.requestLocationUpdates("gps", 5000, 0, locationListener);
-            }
-        });
-    }
-
-    @Override
-    protected void onPause() {
-        Log.d("TAG", "PAUSE");
-
-        super.onPause();
-        stopLocationUpdates();
     }
 
     protected void stopLocationUpdates() {
-        Log.d("TAG", "ENDING LOCATION UPDATES");
 
-        locationManager.removeUpdates(locationListener);
-        locationManager = null;
+        if(locationManager != null) {
+            Log.d("TAG", "ENDING LOCATION UPDATES");
+
+            locationManager.removeUpdates(locationListener);
+            locationManager = null;
+        }
     }
 
     @Override
     public void onResume() {
-        Log.d("TAG", "RESUME");
-
+        Log.d("TAG", "ON RESUME");
         super.onResume();
-        configureButton();
+
+        startLocationService();
     }
 }
