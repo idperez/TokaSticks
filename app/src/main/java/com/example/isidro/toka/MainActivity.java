@@ -17,12 +17,30 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.location.LocationManager;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+
 public class MainActivity extends AppCompatActivity {
 
     private Button button;
     private TextView textView;
     private LocationManager locationManager;
     private LocationListener locationListener;
+
+    private Location PlayerLocation;
+    private Location FrontLocation;
+    private Location MiddleLocation;
+    private Location BackLocation;
+
+    private JSONObject holes;
+
+    private double frontDistance;
+    private double middleDistance;
+    private double backDistance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +52,24 @@ public class MainActivity extends AppCompatActivity {
         button = (Button) findViewById(R.id.button);
         textView = (TextView) findViewById(R.id.textView);
 
-        startLocationService();
+        PlayerLocation = new Location("Player");
+        FrontLocation = new Location("Front");
+        MiddleLocation = new Location("Middle");
+        BackLocation = new Location("Back");
+
+        try {
+            JSONObject obj = new JSONObject(loadJSONData());
+            this.holes = (JSONObject) obj.getJSONObject("app").getJSONObject("hole_info").getJSONArray("holes").get(0);
+
+            MiddleLocation.setLatitude(holes.getDouble("middle_lat"));
+            MiddleLocation.setLongitude(holes.getDouble("middle_long"));
+
+            startLocationService();
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
@@ -52,7 +87,8 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                locationManager.requestLocationUpdates("gps", 2000, 0, locationListener);
+                Log.d("TAG", "CLICKED");
+                locationManager.requestLocationUpdates("gps", 3000, 0, locationListener);
             }
         });
     }
@@ -70,8 +106,13 @@ public class MainActivity extends AppCompatActivity {
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                textView.setText(location.getLongitude() + " " + location.getLatitude());
-                Log.d("TAG", "LOCATION CALLED");
+
+                PlayerLocation.setLatitude(location.getLatitude());
+                PlayerLocation.setLongitude(location.getLongitude());
+
+                double distance = PlayerLocation.distanceTo(MiddleLocation);
+
+                textView.append("\n" + String.valueOf(distance));
             }
 
             @Override
@@ -98,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
         } else {
+            Log.d("TAG", "CALLED");
             configureButton();
         }
     }
@@ -118,5 +160,21 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
 
         startLocationService();
+    }
+
+    public String loadJSONData() {
+        String json = null;
+        try {
+            InputStream is = this.getAssets().open("course_info.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
     }
 }

@@ -1,0 +1,26 @@
+{ "app": {
+  "name": "Toka Sticks Golf Club",
+  "location": "Mesa, AZ",
+  "author": "Isidro Perez",
+  "date": "08/23/2016",
+  "hole_info": {
+      "holes": [
+        {
+            "hole": 1,
+            "par": 4,
+            "men_hcp": 13,
+            "lad_hcp": 17,
+            "black": 382,
+            "gold": 348,
+            "silver": 326,
+            "jade": 277,
+            "front_long": -111.68425,
+            "front_lat": 33.311218,
+            "middle_long": -111.682416,
+            "middle_lat": 33.311306,
+            "back_long": -111.682421,
+            "back_lat": 33.311390
+        }
+      ]
+  }
+}}
