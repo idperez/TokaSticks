@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     private double middleDistance;
     private double backDistance;
 
+    private static final double METER_TO_YARD = 1.09361;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d("TAG", "ON CREATE");
@@ -110,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                 PlayerLocation.setLatitude(location.getLatitude());
                 PlayerLocation.setLongitude(location.getLongitude());
 
-                double distance = PlayerLocation.distanceTo(MiddleLocation);
+                int distance = (int) Math.round(PlayerLocation.distanceTo(MiddleLocation) * METER_TO_YARD);
 
                 textView.append("\n" + String.valueOf(distance));
             }
