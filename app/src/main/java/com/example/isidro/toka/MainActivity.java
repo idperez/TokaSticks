@@ -1,6 +1,7 @@
 package com.example.isidro.toka;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -24,7 +25,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     private Button button;
     private TextView textView;
@@ -49,8 +50,9 @@ public class MainActivity extends AppCompatActivity {
         Log.d("TAG", "ON CREATE");
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.hole_layout);
 
+        /*
         button = (Button) findViewById(R.id.button);
         textView = (TextView) findViewById(R.id.textView);
 
@@ -71,9 +73,11 @@ public class MainActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        */
 
     }
 
+    /*
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {
@@ -100,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("TAG", "ON PAUSE");
 
         super.onPause();
-        stopLocationUpdates();
+        //stopLocationUpdates();
     }
 
     public void startLocationService() {
@@ -161,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("TAG", "ON RESUME");
         super.onResume();
 
-        startLocationService();
+        //startLocationService();
     }
 
     public String loadJSONData() {
@@ -179,4 +183,5 @@ public class MainActivity extends AppCompatActivity {
         }
         return json;
     }
+    */
 }

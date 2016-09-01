@@ -6,6 +6,6 @@
     <string name="middle">Middle</string>
     <string name="back">Back</string>
     <string name="hdc">HDC</string>
-    <string name="mens">Men's</string>
-    <string name="ladies">Ladie's</string>
+    <string name="mens">Men\'s</string>
+    <string name="ladies">Ladie\'s</string>
 </resources>
