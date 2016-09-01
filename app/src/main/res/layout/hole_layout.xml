@@ -7,6 +7,8 @@
     android:layout_height="match_parent"
     android:background="#b0b8b9">
 
+    <include layout="@layout/hole_top_nav" />
+
     <include layout="@layout/hole_title"/>
 
     <include layout="@layout/hole_yardage" />
