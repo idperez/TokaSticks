@@ -23,6 +23,7 @@
             android:gravity="left">
 
             <View
+                android:id="@+id/left_arrow"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@drawable/left_arrow"
@@ -50,6 +51,7 @@
             android:gravity="right">
 
             <View
+                android:id="@+id/right_arrow"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@drawable/right_arrow"

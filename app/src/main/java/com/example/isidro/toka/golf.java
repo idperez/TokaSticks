@@ -8,7 +8,9 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.roughike.bottombar.BottomBar;
@@ -16,14 +18,13 @@ import com.roughike.bottombar.OnTabSelectListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.io.InputStream;
 
 public class Golf extends Activity {
 
-    private Button button;
-    private TextView textView;
     private LocationManager locationManager;
     private LocationListener locationListener;
 
@@ -38,7 +39,16 @@ public class Golf extends Activity {
     private double middleDistance;
     private double backDistance;
 
-    private int currentHole;
+    private int currentHole = 0;
+
+    public TextView hole;
+    public TextView par;
+    private TextView mhdc;
+    private TextView lhdc;
+    private TextView black;
+    private TextView silver;
+    private TextView gold;
+    private TextView jade;
 
     private static final double METER_TO_YARD = 1.09361;
 
@@ -46,6 +56,8 @@ public class Golf extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hole_layout);
+
+        loadHoleData(currentHole);
 
         final Intent home = new Intent(this, MainActivity.class);
         final Intent list = new Intent(this, List.class);
@@ -71,15 +83,30 @@ public class Golf extends Activity {
             }
         });
 
-        try {
-            JSONObject obj = new JSONObject(loadJSONData());
-            this.holes = (JSONObject) obj.getJSONObject("app").getJSONObject("hole_info").getJSONArray("holes").get(currentHole);
+        View decrementHole = findViewById(R.id.left_arrow);
+        decrementHole.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(currentHole != 0) {
+                    currentHole--;
+                    loadHoleData(currentHole);
+                }
+            }
+        });
 
+        View incrementHole = findViewById(R.id.right_arrow);
+        incrementHole.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(currentHole != 17) {
+                    currentHole++;
+                    loadHoleData(currentHole);
+                }
+            }
+        });
 
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        // hole = (TextView) findViewById(R.id.hole);
+        // par = (TextView) findViewById(R.id.par);
 
         /*
 
@@ -96,6 +123,20 @@ public class Golf extends Activity {
             e.printStackTrace();
         }
         */
+    }
+
+    public void loadHoleData(int index) {
+
+        try {
+            JSONObject obj = new JSONObject(loadJSONData());
+            this.holes = (JSONObject) obj.getJSONObject("app").getJSONObject("hole_info").getJSONArray("holes").get(index);
+
+            //hole.setText("12");
+            //par.setText("23");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     /*
