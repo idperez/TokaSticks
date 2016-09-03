@@ -14,7 +14,11 @@ import android.widget.TextView;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class Golf extends Activity {
 
@@ -33,6 +37,8 @@ public class Golf extends Activity {
     private double frontDistance;
     private double middleDistance;
     private double backDistance;
+
+    private int currentHole;
 
     private static final double METER_TO_YARD = 1.09361;
 
@@ -65,9 +71,17 @@ public class Golf extends Activity {
             }
         });
 
+        try {
+            JSONObject obj = new JSONObject(loadJSONData());
+            this.holes = (JSONObject) obj.getJSONObject("app").getJSONObject("hole_info").getJSONArray("holes").get(currentHole);
+
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         /*
-        button = (Button) findViewById(R.id.button);
-        textView = (TextView) findViewById(R.id.textView);
 
         PlayerLocation = new Location("Player");
         FrontLocation = new Location("Front");
@@ -75,11 +89,6 @@ public class Golf extends Activity {
         BackLocation = new Location("Back");
 
         try {
-            JSONObject obj = new JSONObject(loadJSONData());
-            this.holes = (JSONObject) obj.getJSONObject("app").getJSONObject("hole_info").getJSONArray("holes").get(0);
-
-            MiddleLocation.setLatitude(holes.getDouble("middle_lat"));
-            MiddleLocation.setLongitude(holes.getDouble("middle_long"));
 
             startLocationService();
 
@@ -179,7 +188,7 @@ public class Golf extends Activity {
 
         //startLocationService();
     }
-
+*/
     public String loadJSONData() {
         String json = null;
         try {
@@ -195,7 +204,7 @@ public class Golf extends Activity {
         }
         return json;
     }
-    */
+
 
 
 }
