@@ -1,12 +1,18 @@
 package com.example.isidro.toka;
 
+import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.IdRes;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -41,23 +47,29 @@ public class Golf extends Activity {
 
     private int currentHole = 0;
 
-    public TextView hole;
-    public TextView par;
-    private TextView mhdc;
-    private TextView lhdc;
-    private TextView black;
-    private TextView silver;
-    private TextView gold;
-    private TextView jade;
+    private TextView hole;
+    private TextView par;
+    private TextView men_hcp;
+    private TextView lad_hcp;
+    private TextView tee_1;
+    private TextView tee_2;
+    private TextView tee_3;
+    private TextView tee_4;
+
+    private TextView front;
+    private TextView middle;
+    private TextView back;
 
     private static final double METER_TO_YARD = 1.09361;
+    private static final int HOLE_MAX = 17;
+    private static final int HOLE_MIN = 0;
+
+    private boolean flag = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hole_layout);
-
-        loadHoleData(currentHole);
 
         final Intent home = new Intent(this, MainActivity.class);
         final Intent list = new Intent(this, List.class);
@@ -87,7 +99,7 @@ public class Golf extends Activity {
         decrementHole.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(currentHole != 0) {
+                if (currentHole != HOLE_MIN) {
                     currentHole--;
                     loadHoleData(currentHole);
                 }
@@ -98,31 +110,34 @@ public class Golf extends Activity {
         incrementHole.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(currentHole != 17) {
+                if (currentHole != HOLE_MAX) {
                     currentHole++;
                     loadHoleData(currentHole);
                 }
             }
         });
 
-        // hole = (TextView) findViewById(R.id.hole);
-        // par = (TextView) findViewById(R.id.par);
+        hole = (TextView) findViewById(R.id.hole);
+        par = (TextView) findViewById(R.id.par);
+        men_hcp = (TextView) findViewById(R.id.mhdc);
+        lad_hcp = (TextView) findViewById(R.id.lhdc);
+        tee_1 = (TextView) findViewById(R.id.tee_1);
+        tee_2 = (TextView) findViewById(R.id.tee_2);
+        tee_3 = (TextView) findViewById(R.id.tee_3);
+        tee_4 = (TextView) findViewById(R.id.tee_4);
 
-        /*
+        front = (TextView) findViewById(R.id.front);
+        middle = (TextView) findViewById(R.id.middle);
+        back = (TextView) findViewById(R.id.back);
 
         PlayerLocation = new Location("Player");
         FrontLocation = new Location("Front");
         MiddleLocation = new Location("Middle");
         BackLocation = new Location("Back");
 
-        try {
+        loadHoleData(currentHole);
 
-            startLocationService();
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        */
+        startLocationService();
     }
 
     public void loadHoleData(int index) {
@@ -130,35 +145,26 @@ public class Golf extends Activity {
         try {
             JSONObject obj = new JSONObject(loadJSONData());
             this.holes = (JSONObject) obj.getJSONObject("app").getJSONObject("hole_info").getJSONArray("holes").get(index);
-
-            //hole.setText("12");
-            //par.setText("23");
+            setHoleData();
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
-    /*
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        switch (requestCode) {
-            case 10:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    configureButton();
-                }
-                return;
-        }
-    }
+    public void setHoleData() throws JSONException {
 
-    private void configureButton() {
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("TAG", "CLICKED");
-                locationManager.requestLocationUpdates("gps", 3000, 0, locationListener);
-            }
-        });
+        hole.setText(holes.get("hole").toString());
+        par.setText(holes.get("par").toString());
+        men_hcp.setText(holes.get("men_hcp").toString());
+        lad_hcp.setText(holes.get("lad_hcp").toString());
+        tee_1.setText(holes.get("black").toString());
+        tee_3.setText(holes.get("gold").toString());
+        tee_2.setText(holes.get("silver").toString());
+        tee_4.setText(holes.get("jade").toString());
+
+        MiddleLocation.setLongitude(Double.valueOf(holes.get("middle_long").toString()));
+        MiddleLocation.setLatitude(Double.valueOf(holes.get("middle_lat").toString()));
     }
 
     @Override
@@ -166,21 +172,27 @@ public class Golf extends Activity {
         Log.d("TAG", "ON PAUSE");
 
         super.onPause();
-        //stopLocationUpdates();
+        stopLocationUpdates();
+        flag = false;
     }
 
+    @TargetApi(Build.VERSION_CODES.M)
     public void startLocationService() {
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
 
-                PlayerLocation.setLatitude(location.getLatitude());
-                PlayerLocation.setLongitude(location.getLongitude());
+                if(flag) {
+                    PlayerLocation.setLatitude(location.getLatitude());
+                    PlayerLocation.setLongitude(location.getLongitude());
 
-                int distance = (int) Math.round(PlayerLocation.distanceTo(MiddleLocation) * METER_TO_YARD);
+                    int distance = (int) Math.round(PlayerLocation.distanceTo(MiddleLocation) * METER_TO_YARD);
 
-                textView.append("\n" + String.valueOf(distance));
+                    middle.setText(String.valueOf(distance));
+
+                    Log.d("TAG", "DISTANCE CALLED");
+                }
             }
 
             @Override
@@ -199,22 +211,22 @@ public class Golf extends Activity {
                 startActivity(intent);
             }
         };
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(new String[]{
-                        Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.INTERNET
-                }, 10);
-                return;
-            }
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{
+                    Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.INTERNET
+            }, 10);
+            return;
         } else {
-            Log.d("TAG", "CALLED");
-            configureButton();
+            Log.d("TAG", "*****CALLED*****");
+            if(flag) {
+                locationManager.requestLocationUpdates("gps", 1000, 0, locationListener);
+            }
         }
     }
 
     protected void stopLocationUpdates() {
 
-        if(locationManager != null) {
+        if (locationManager != null) {
             Log.d("TAG", "ENDING LOCATION UPDATES");
 
             locationManager.removeUpdates(locationListener);
@@ -227,9 +239,9 @@ public class Golf extends Activity {
         Log.d("TAG", "ON RESUME");
         super.onResume();
 
-        //startLocationService();
+        startLocationService();
     }
-*/
+
     public String loadJSONData() {
         String json = null;
         try {
@@ -245,7 +257,4 @@ public class Golf extends Activity {
         }
         return json;
     }
-
-
-
 }

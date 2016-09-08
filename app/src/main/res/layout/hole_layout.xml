@@ -17,12 +17,21 @@
 
     <include layout="@layout/hole_hcd_layout" />
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal" >
+
     <com.roughike.bottombar.BottomBar
         android:id="@+id/bottomBar"
-        android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_weight="1"
         app:bb_tabXmlResource="@xml/bottombar_tabs"
-        android:background="#000000" />
+        android:background="#000000"
+        android:layout_gravity="bottom" />
+
+    </LinearLayout>
 
 </LinearLayout>
