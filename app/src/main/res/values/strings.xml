@@ -13,4 +13,12 @@
     <string name="scorecard">Scorecard</string>
     <string name="tee_times">Tee Times</string>
     <string name="weather">Weather</string>
+    <string name="newsletter_link">http://www.tokasticksgolf.com/Newsletter_50dfff95d.html</string>
+    <string name="scorecard_link">http://www.tokasticksgolf.com/scorecard.html</string>
+    <string name="tee_times_link">http://www.tokasticksgolf.com/Mesa-Arizona-Tee-Times.html</string>
+    <string name="weather_link">https://weather.com/weather/today/l/33.42,-111.83</string>
+    <string name="facebook">https://www.facebook.com/TokaSticks/?fref=ts</string>
+    <string name="instagram">https://www.instagram.com/tokasticks_golfclub/</string>
+    <string name="twitter">https://twitter.com/tokasticksgolf</string>
+    <string name="contact">Contact Us</string>
 </resources>
