@@ -78,7 +78,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
                     android:id="@+id/imageView"
-                    android:src="@drawable/home_image"/>
+                    android:src="@drawable/contact_image"/>
 
             </LinearLayout>
 
@@ -110,22 +110,22 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:layout_marginRight="220dp">
+                android:layout_marginRight="300dp">
 
                 <View
-                    android:id="@+id/newsletter"
+                    android:id="@+id/call_toka"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/newsletter"
+                    android:background="@drawable/phone"
                     android:layout_marginBottom="20dp"
-                    android:layout_marginRight="20dp"/>
+                    android:layout_marginLeft="5dp"/>
 
                 <View
-                    android:id="@+id/tee_times"
+                    android:id="@+id/toka_web"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/tee_times"
-                    android:layout_marginRight="20dp" />
+                    android:background="@drawable/website"
+                    android:layout_marginLeft="5dp"/>
 
             </LinearLayout>
 
@@ -139,18 +139,17 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:textSize="20dp"
-                    android:text="@string/newsletter"
+                    android:textSize="15dp"
+                    android:text="@string/call_club"
                     android:layout_marginBottom="40dp"/>
 
                 <TextView
                     android:id="@+id/tee_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:textSize="20dp"
-                    android:text="@string/tee_times" />
+                    android:layout_marginLeft="8dp"
+                    android:textSize="12dp"
+                    android:text="@string/toka_website" />
 
             </LinearLayout>
 
@@ -158,22 +157,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:gravity="center"
-                android:layout_marginLeft="40dp">
+                android:gravity="center">
 
                 <View
-                    android:id="@+id/scorecard"
+                    android:id="@+id/call_four"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/scorecard"
+                    android:background="@drawable/phone"
                     android:layout_marginBottom="20dp"
                     android:layout_marginLeft="20dp"/>
 
                 <View
-                    android:id="@+id/weather"
+                    android:id="@+id/four_web"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/weather"
+                    android:background="@drawable/website"
                     android:layout_marginLeft="20dp" />
 
             </LinearLayout>
@@ -191,16 +189,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginBottom="40dp"
-                    android:textSize="20dp"
-                    android:text="@string/scorecard" />
+                    android:textSize="15dp"
+                    android:text="@string/call_four_points" />
 
                 <TextView
                     android:id="@+id/tee_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:textSize="20dp"
-                    android:text="@string/weather"/>
+                    android:textSize="12dp"
+                    android:text="@string/four_website"/>
 
             </LinearLayout>
 
