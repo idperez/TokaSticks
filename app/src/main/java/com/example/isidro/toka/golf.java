@@ -71,29 +71,7 @@ public class Golf extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hole_layout);
 
-        final Intent home = new Intent(this, MainActivity.class);
-        final Intent list = new Intent(this, List.class);
-        final Intent contact = new Intent(this, Contact.class);
-
-        BottomBar bottomBar = (BottomBar) findViewById(R.id.bottomBar);
-        bottomBar.setDefaultTab(R.id.tab_golf);
-        bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
-            @Override
-            public void onTabSelected(@IdRes int tabId) {
-
-                switch (tabId) {
-                    case R.id.tab_home:
-                        startActivity(home);
-                        break;
-                    case R.id.tab_list:
-                        startActivity(list);
-                        break;
-                    case R.id.tab_contact:
-                        startActivity(contact);
-                        break;
-                }
-            }
-        });
+        setBottomBar();
 
         View decrementHole = findViewById(R.id.left_arrow);
         decrementHole.setOnClickListener(new View.OnClickListener() {
@@ -256,5 +234,32 @@ public class Golf extends Activity {
             return null;
         }
         return json;
+    }
+
+    public void setBottomBar() {
+        final Intent home = new Intent(this, MainActivity.class);
+        final Intent list = new Intent(this, List.class);
+        final Intent contact = new Intent(this, Contact.class);
+
+        BottomBar bottomBar = (BottomBar) findViewById(R.id.bottomBar);
+        bottomBar.setDefaultTab(R.id.tab_golf);
+        bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
+            @Override
+            public void onTabSelected(@IdRes int tabId) {
+
+                switch (tabId) {
+                    case R.id.tab_home:
+                        startActivity(home);
+                        break;
+                    case R.id.tab_list:
+                        startActivity(list);
+                        break;
+                    case R.id.tab_contact:
+                        startActivity(contact);
+                        break;
+                }
+            }
+        });
+
     }
 }

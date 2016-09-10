@@ -15,6 +15,10 @@ public class List extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
+        setBottomBar();
+    }
+
+    public void setBottomBar() {
         final Intent golf = new Intent(this, Golf.class);
         final Intent home = new Intent(this, MainActivity.class);
         final Intent contact = new Intent(this, Contact.class);

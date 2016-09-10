@@ -20,6 +20,10 @@ public class MainActivity extends Activity {
 
         setContentView(R.layout.activity_main);
 
+        setBottomBar();
+    }
+
+    private void setBottomBar() {
         final Intent golf = new Intent(this, Golf.class);
         final Intent list = new Intent(this, List.class);
         final Intent contact = new Intent(this, Contact.class);
