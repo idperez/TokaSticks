@@ -25,4 +25,8 @@
     <string name="call_four_points">Call Four Points</string>
     <string name="toka_website">Toka Sticks Website</string>
     <string name="four_website">Four Points Website</string>
+    <string name="toka_website_link">http://www.tokasticksgolf.com/index.php</string>
+    <string name="four_webiste_link">http://www.fourpointsphoenixmesaairport.com/</string>
+    <string name="toka_phone">tel:4809889405</string>
+    <string name="four_phone">tel:4805792100</string>
 </resources>
