@@ -8,4 +8,9 @@
     <string name="hdc">HDC</string>
     <string name="mens">Men\'s</string>
     <string name="ladies">Ladie\'s</string>
+    <string name="title">Toka Sticks Golf Club</string>
+    <string name="newsletter">Newsletter</string>
+    <string name="scorecard">Scorecard</string>
+    <string name="tee_times">Tee Times</string>
+    <string name="weather">Weather</string>
 </resources>
