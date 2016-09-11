@@ -15,16 +15,14 @@ import android.support.annotation.IdRes;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -41,12 +39,6 @@ public class Golf extends Activity {
 
     private JSONObject holes;
 
-    private double frontDistance;
-    private double middleDistance;
-    private double backDistance;
-
-    private int currentHole = 0;
-
     private TextView hole;
     private TextView par;
     private TextView men_hcp;
@@ -60,6 +52,7 @@ public class Golf extends Activity {
     private TextView middle;
     private TextView back;
 
+    private static final int MAX_YARDAGE = 2000;
     private static final double METER_TO_YARD = 1.09361;
     private static final int HOLE_MAX = 17;
     private static final int HOLE_MIN = 0;
@@ -81,6 +74,7 @@ public class Golf extends Activity {
             public void onClick(View v) {
                 if (index != HOLE_MIN) {
                     index--;
+                    setLocationText();
                     loadHoleData();
                 }
             }
@@ -92,6 +86,7 @@ public class Golf extends Activity {
             public void onClick(View v) {
                 if (index != HOLE_MAX) {
                     index++;
+                    setLocationText();
                     loadHoleData();
                 }
             }
@@ -130,7 +125,6 @@ public class Golf extends Activity {
             JSONObject obj = new JSONObject(loadJSONData());
             this.holes = (JSONObject) obj.getJSONObject("app").getJSONObject("hole_info").getJSONArray("holes").get(index);
             setHoleData();
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -147,8 +141,14 @@ public class Golf extends Activity {
         tee_2.setText(holes.get("silver").toString());
         tee_4.setText(holes.get("jade").toString());
 
+        FrontLocation.setLongitude(Double.valueOf(holes.get("front_long").toString()));
+        FrontLocation.setLatitude(Double.valueOf(holes.get("front_lat").toString()));
+
         MiddleLocation.setLongitude(Double.valueOf(holes.get("middle_long").toString()));
         MiddleLocation.setLatitude(Double.valueOf(holes.get("middle_lat").toString()));
+
+        BackLocation.setLongitude(Double.valueOf(holes.get("back_long").toString()));
+        BackLocation.setLatitude(Double.valueOf(holes.get("back_lat").toString()));
     }
 
     @Override
@@ -171,9 +171,22 @@ public class Golf extends Activity {
                     PlayerLocation.setLatitude(location.getLatitude());
                     PlayerLocation.setLongitude(location.getLongitude());
 
-                    int distance = (int) Math.round(PlayerLocation.distanceTo(MiddleLocation) * METER_TO_YARD);
+                    int frontDistance = (int) Math.round(PlayerLocation.distanceTo(FrontLocation) * METER_TO_YARD);
+                    int middleDistance = (int) Math.round(PlayerLocation.distanceTo(MiddleLocation) * METER_TO_YARD);
+                    int backDistance = (int) Math.round(PlayerLocation.distanceTo(BackLocation) * METER_TO_YARD);
 
-                    middle.setText(String.valueOf(distance));
+                    if(middleDistance > 100) {
+                        front.setText(String.valueOf("OUT"));
+                        middle.setText(String.valueOf("OF"));
+                        back.setText(String.valueOf("RAN"));
+
+                        //Toast.makeText(Golf.this, "Must Be Within " + MAX_YARDAGE + " Yards To Use GPS",
+                              //  Toast.LENGTH_SHORT).show();
+                    } else {
+                        front.setText(String.valueOf(frontDistance));
+                        middle.setText(String.valueOf(middleDistance));
+                        back.setText(String.valueOf(backDistance));
+                    }
 
                     Log.d("TAG", "DISTANCE CALLED");
                 }
@@ -240,6 +253,12 @@ public class Golf extends Activity {
             return null;
         }
         return json;
+    }
+
+    public void setLocationText() {
+        front.setText(String.valueOf("..."));
+        middle.setText(String.valueOf("..."));
+        back.setText(String.valueOf("..."));
     }
 
     public void setBottomBar() {
