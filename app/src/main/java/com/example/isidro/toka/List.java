@@ -56,6 +56,19 @@ public class List extends Activity {
                 e.printStackTrace();
             }
 
+            final int touch = i;
+
+            listLayout.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getApplicationContext(), Golf.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("Hole", String.valueOf(touch));
+                    getApplicationContext().startActivity(intent);
+                }
+            });
+
             layout.addView(listLayout);
         }
 

@@ -66,6 +66,8 @@ public class Golf extends Activity {
 
     private boolean flag = true;
 
+    private static int index = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,9 +79,9 @@ public class Golf extends Activity {
         decrementHole.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (currentHole != HOLE_MIN) {
-                    currentHole--;
-                    loadHoleData(currentHole);
+                if (index != HOLE_MIN) {
+                    index--;
+                    loadHoleData();
                 }
             }
         });
@@ -88,9 +90,9 @@ public class Golf extends Activity {
         incrementHole.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (currentHole != HOLE_MAX) {
-                    currentHole++;
-                    loadHoleData(currentHole);
+                if (index != HOLE_MAX) {
+                    index++;
+                    loadHoleData();
                 }
             }
         });
@@ -113,14 +115,18 @@ public class Golf extends Activity {
         MiddleLocation = new Location("Middle");
         BackLocation = new Location("Back");
 
-        loadHoleData(currentHole);
+        loadHoleData();
 
         startLocationService();
     }
 
-    public void loadHoleData(int index) {
+    public void loadHoleData() {
 
         try {
+            Bundle extras = getIntent().getExtras();
+            if(extras != null) {
+                index = Integer.valueOf(getIntent().getExtras().getString("Hole")) - 1;
+            }
             JSONObject obj = new JSONObject(loadJSONData());
             this.holes = (JSONObject) obj.getJSONObject("app").getJSONObject("hole_info").getJSONArray("holes").get(index);
             setHoleData();

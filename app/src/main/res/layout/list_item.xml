@@ -36,22 +36,21 @@
 
             <TextView
                 android:id="@+id/list_hole"
-                android:layout_width="wrap_content"
+                android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:textSize="30dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="25dp" />
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="30dp"
-                android:text="@string/par"
-                android:layout_marginLeft="10dp"/>
+                android:text="@string/par" />
 
             <TextView
                 android:id="@+id/list_par"
-                android:layout_width="wrap_content"
+                android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:textSize="30dp"
                 android:layout_marginLeft="5dp" />
@@ -60,7 +59,6 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@drawable/golf_bag"
-                android:layout_marginLeft="20dp"
                 android:layout_marginRight="5dp"/>
 
         </LinearLayout>
