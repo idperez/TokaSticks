@@ -34,14 +34,14 @@ public class Contact extends Activity {
 
     private void setViews() {
 
-        tokaWeb = findViewById(R.id.toka_web);
-        setOnclick(tokaWeb, getResources().getString(R.string.toka_website_link), WEB);
+        //tokaWeb = findViewById(R.id.toka_web);
+        //setOnclick(tokaWeb, getResources().getString(R.string.toka_website_link), WEB);
 
         fourWeb = findViewById(R.id.four_web);
         setOnclick(fourWeb, getResources().getString(R.string.four_webiste_link), WEB);
 
-        tokaCall = findViewById(R.id.call_toka);
-        setOnclick(tokaCall, getResources().getString(R.string.toka_phone), CALL);
+        //tokaCall = findViewById(R.id.call_toka);
+        //setOnclick(tokaCall, getResources().getString(R.string.toka_phone), CALL);
 
         fourCall = findViewById(R.id.call_four);
         setOnclick(fourCall, getResources().getString(R.string.four_phone), CALL);

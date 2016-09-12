@@ -52,7 +52,7 @@ public class Golf extends Activity {
     private TextView middle;
     private TextView back;
 
-    private static final int MAX_YARDAGE = 2000;
+    private static final int MAX_YARDAGE = 10000;
     private static final double METER_TO_YARD = 1.09361;
     private static final int HOLE_MAX = 17;
     private static final int HOLE_MIN = 0;
@@ -67,6 +67,11 @@ public class Golf extends Activity {
         setContentView(R.layout.hole_layout);
 
         setBottomBar();
+
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            index = Integer.valueOf(getIntent().getExtras().getString("Hole")) - 1;
+        }
 
         View decrementHole = findViewById(R.id.left_arrow);
         decrementHole.setOnClickListener(new View.OnClickListener() {
@@ -118,10 +123,6 @@ public class Golf extends Activity {
     public void loadHoleData() {
 
         try {
-            Bundle extras = getIntent().getExtras();
-            if(extras != null) {
-                index = Integer.valueOf(getIntent().getExtras().getString("Hole")) - 1;
-            }
             JSONObject obj = new JSONObject(loadJSONData());
             this.holes = (JSONObject) obj.getJSONObject("app").getJSONObject("hole_info").getJSONArray("holes").get(index);
             setHoleData();
@@ -175,7 +176,7 @@ public class Golf extends Activity {
                     int middleDistance = (int) Math.round(PlayerLocation.distanceTo(MiddleLocation) * METER_TO_YARD);
                     int backDistance = (int) Math.round(PlayerLocation.distanceTo(BackLocation) * METER_TO_YARD);
 
-                    if(middleDistance > 100) {
+                    if(middleDistance > MAX_YARDAGE) {
                         front.setText(String.valueOf("OUT"));
                         middle.setText(String.valueOf("OF"));
                         back.setText(String.valueOf("RAN"));

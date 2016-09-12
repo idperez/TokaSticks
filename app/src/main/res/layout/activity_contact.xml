@@ -126,6 +126,22 @@
                     card_view:cardCornerRadius="0dp"
                     card_view:cardElevation="3dp">
 
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true">
+
+                            <TextView
+                                android:layout_centerHorizontal="true"
+                                android:id="@+id/call_us"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="5dp"
+                                android:text="Call Us"/>
+
+                        </RelativeLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -134,19 +150,12 @@
                         android:layout_marginRight="300dp">
 
                         <View
-                            android:id="@+id/call_toka"
+                            android:id="@+id/call_club"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:background="@drawable/phone"
                             android:layout_marginBottom="20dp"
-                            android:layout_marginLeft="5dp"/>
-
-                        <View
-                            android:id="@+id/toka_web"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:background="@drawable/website"
-                            android:layout_marginLeft="5dp"/>
+                            android:layout_marginLeft="20dp"/>
 
                     </LinearLayout>
 
@@ -278,3 +287,5 @@
     </ScrollView>
 
 </RelativeLayout>
+
+
