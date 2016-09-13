@@ -73,6 +73,7 @@
                         android:gravity="center">
 
                         <TextView
+                            android:id="@+id/contact_title"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:text="@string/contact"
@@ -157,6 +158,7 @@
                             android:background="@drawable/phone" />
 
                         <TextView
+                            android:id="@+id/call_toka_string"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="15dp"
@@ -170,6 +172,7 @@
                             android:background="@drawable/phone" />
 
                         <TextView
+                            android:id="@+id/call_four_string"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="15dp"
@@ -196,7 +199,7 @@
 
                         <TextView
                             android:layout_centerHorizontal="true"
-                            android:id="@+id/website"
+                            android:id="@+id/website_string"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -221,11 +224,12 @@
                             android:layout_marginLeft="10dp" />
 
                         <TextView
+                            android:id="@+id/toak_web_string"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="15dp"
                             android:layout_marginRight="15dp"
-                            android:text="@string/call_club" />
+                            android:text="@string/toka_website" />
 
                         <View
                             android:id="@+id/four_web"
@@ -235,6 +239,7 @@
                             android:layout_marginLeft="10dp" />
 
                         <TextView
+                            android:id="@+id/four_web_string"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="15dp"
@@ -315,5 +320,3 @@
     </ScrollView>
 
 </RelativeLayout>
-
-
