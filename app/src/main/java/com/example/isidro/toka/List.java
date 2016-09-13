@@ -2,6 +2,7 @@ package com.example.isidro.toka;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import com.roughike.bottombar.OnTabSelectListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,12 +27,18 @@ public class List extends Activity {
     private TextView hole;
     private TextView par;
 
+    private TextView list_title;
+    private TextView hole_string;
+    private TextView par_string;
+
     private JSONObject holes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
+
+        setText();
 
         LinearLayout layout = (LinearLayout)findViewById(R.id.root);
         LayoutInflater inflater = getLayoutInflater();
@@ -73,6 +81,19 @@ public class List extends Activity {
         }
 
         setBottomBar();
+    }
+
+    public void setText() {
+        list_title = (TextView) findViewById(R.id.list_title);
+        par_string = (TextView) findViewById(R.id.par_list_string);
+        hole_string = (TextView) findViewById(R.id.hole_list_string);
+
+        setFont();
+    }
+
+    public void setFont() {
+        Typeface font_1 = Typeface.createFromAsset(getAssets(), "fonts/DroidSerif-Regular.ttf");
+        list_title.setTypeface(font_1);
     }
 
     public String loadJSONData() {

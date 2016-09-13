@@ -72,6 +72,7 @@
                         android:gravity="center">
 
                         <TextView
+                            android:id="@+id/main_title_string"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:text="@string/title"
@@ -157,6 +158,7 @@
                         android:layout_marginRight="150dp">
 
                         <TextView
+                            android:id="@+id/newsletter_string"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
@@ -165,7 +167,7 @@
                             android:layout_marginBottom="40dp"/>
 
                         <TextView
-                            android:id="@+id/tee_2"
+                            android:id="@+id/tee_string"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
@@ -206,7 +208,7 @@
                         android:layout_marginLeft="180dp">
 
                         <TextView
-                            android:id="@+id/tee_3"
+                            android:id="@+id/scorecard_string"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
@@ -215,7 +217,7 @@
                             android:text="@string/scorecard" />
 
                         <TextView
-                            android:id="@+id/tee_4"
+                            android:id="@+id/weather_string"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
