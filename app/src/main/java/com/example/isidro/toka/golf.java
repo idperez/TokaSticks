@@ -5,6 +5,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Typeface;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -23,6 +24,7 @@ import com.roughike.bottombar.OnTabSelectListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -51,6 +53,16 @@ public class Golf extends Activity {
     private TextView front;
     private TextView middle;
     private TextView back;
+
+    private TextView lady_string;
+    private TextView men_string;
+
+    private TextView front_string;
+    private TextView middle_string;
+    private TextView back_string;
+
+    private TextView hole_string;
+    private TextView par_string;
 
     private static final int MAX_YARDAGE = 10000;
     private static final double METER_TO_YARD = 1.09361;
@@ -97,6 +109,19 @@ public class Golf extends Activity {
             }
         });
 
+        setText();
+
+        PlayerLocation = new Location("Player");
+        FrontLocation = new Location("Front");
+        MiddleLocation = new Location("Middle");
+        BackLocation = new Location("Back");
+
+        loadHoleData();
+
+        startLocationService();
+    }
+
+    private void setText() {
         hole = (TextView) findViewById(R.id.hole);
         par = (TextView) findViewById(R.id.par);
         men_hcp = (TextView) findViewById(R.id.mhdc);
@@ -110,14 +135,46 @@ public class Golf extends Activity {
         middle = (TextView) findViewById(R.id.middle);
         back = (TextView) findViewById(R.id.back);
 
-        PlayerLocation = new Location("Player");
-        FrontLocation = new Location("Front");
-        MiddleLocation = new Location("Middle");
-        BackLocation = new Location("Back");
+        men_string = (TextView) findViewById(R.id.men_string);
+        lady_string = (TextView) findViewById(R.id.lady_string);
 
-        loadHoleData();
+        front_string = (TextView) findViewById(R.id.front_string);
+        middle_string = (TextView) findViewById(R.id.middle_string);
+        back_string = (TextView) findViewById(R.id.back_string);
 
-        startLocationService();
+        hole_string = (TextView) findViewById(R.id.hole_string);
+        par_string = (TextView) findViewById(R.id.par_string);
+
+        setFonts();
+    }
+
+    private void setFonts() {
+        Typeface font_1 = Typeface.createFromAsset(getAssets(), "fonts/DroidSerif-BoldItalic.ttf");
+        tee_1.setTypeface(font_1);
+        tee_2.setTypeface(font_1);
+        tee_3.setTypeface(font_1);
+        tee_4.setTypeface(font_1);
+
+        front.setTypeface(font_1);
+        middle.setTypeface(font_1);
+        back.setTypeface(font_1);
+
+        hole.setTypeface(font_1);
+        par.setTypeface(font_1);
+
+        men_hcp.setTypeface(font_1);
+        lad_hcp.setTypeface(font_1);
+
+        Typeface font_2 = Typeface.createFromAsset(getAssets(), "fonts/DroidSerif-Regular.ttf");
+        men_string.setTypeface(font_2);
+        lady_string.setTypeface(font_2);
+
+        front_string.setTypeface(font_2);
+        middle_string.setTypeface(font_2);
+        back_string.setTypeface(font_2);
+
+        hole_string.setTypeface(font_2);
+        par_string.setTypeface(font_2);
     }
 
     public void loadHoleData() {
