@@ -118,7 +118,7 @@
                     xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:card_view="http://schemas.android.com/apk/res-auto"
                     android:layout_width="match_parent"
-                    android:layout_height="125dp"
+                    android:layout_height="70dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="10dp"
@@ -138,6 +138,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_marginTop="5dp"
+                                android:textColor="#000"
                                 android:text="Call Us"/>
 
                         </RelativeLayout>
@@ -145,90 +146,34 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:layout_marginRight="300dp">
-
-                        <View
-                            android:id="@+id/call_club"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:background="@drawable/phone"
-                            android:layout_marginBottom="20dp"
-                            android:layout_marginLeft="20dp"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:layout_marginRight="150dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="15dp"
-                            android:text="@string/call_club"
-                            android:layout_marginBottom="40dp"/>
-
-                        <TextView
-                            android:id="@+id/tee_2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
-                            android:textSize="12dp"
-                            android:text="@string/toka_website" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="15dp"
                         android:gravity="center">
 
                         <View
-                            android:id="@+id/call_four"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:background="@drawable/phone"
-                            android:layout_marginBottom="20dp"
-                            android:layout_marginLeft="20dp"/>
+                            android:id="@+id/call_toka"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:background="@drawable/phone" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15dp"
+                            android:layout_marginRight="30dp"
+                            android:text="@string/call_club" />
 
                         <View
-                            android:id="@+id/four_web"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:background="@drawable/website"
-                            android:layout_marginLeft="20dp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:layout_marginLeft="180dp">
+                            android:id="@+id/call_four"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:background="@drawable/phone" />
 
                         <TextView
-                            android:id="@+id/tee_3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginBottom="40dp"
                             android:textSize="15dp"
                             android:text="@string/call_four_points" />
-
-                        <TextView
-                            android:id="@+id/tee_4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:textSize="12dp"
-                            android:text="@string/four_website"/>
 
                     </LinearLayout>
 
@@ -238,7 +183,72 @@
                     xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:card_view="http://schemas.android.com/apk/res-auto"
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    card_view:cardCornerRadius="0dp"
+                    card_view:cardElevation="3dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true">
+
+                        <TextView
+                            android:layout_centerHorizontal="true"
+                            android:id="@+id/website"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="5dp"
+                            android:textColor="#000"
+                            android:text="@string/website"/>
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="15dp"
+                        android:gravity="center">
+
+                        <View
+                            android:id="@+id/toka_web"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:background="@drawable/website"
+                            android:layout_marginLeft="10dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15dp"
+                            android:layout_marginRight="15dp"
+                            android:text="@string/call_club" />
+
+                        <View
+                            android:id="@+id/four_web"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:background="@drawable/website"
+                            android:layout_marginLeft="10dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15dp"
+                            android:text="@string/call_four_points" />
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="10dp"
@@ -247,30 +257,48 @@
                     card_view:cardCornerRadius="0dp"
                     card_view:cardElevation="3dp">
 
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true">
+
+                        <TextView
+                            android:layout_centerHorizontal="true"
+                            android:id="@+id/follow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="5dp"
+                            android:textColor="#000"
+                            android:text="@string/follow"/>
+
+                    </RelativeLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="horizontal"
+                        android:layout_marginTop="15dp"
                         android:gravity="center">
 
                         <ImageView
-                            android:layout_width="70dp"
-                            android:layout_height="50dp"
+                            android:layout_width="60dp"
+                            android:layout_height="40dp"
                             android:layout_marginLeft="10dp"
                             android:layout_gravity="center"
                             android:id="@+id/facebook"
                             android:src="@drawable/facebook"/>
 
                         <ImageView
-                            android:layout_width="70dp"
-                            android:layout_height="50dp"
+                            android:layout_width="60dp"
+                            android:layout_height="40dp"
                             android:layout_gravity="center"
                             android:id="@+id/twitter"
                             android:src="@drawable/twitter"/>
 
                         <ImageView
-                            android:layout_width="70dp"
-                            android:layout_height="50dp"
+                            android:layout_width="60dp"
+                            android:layout_height="40dp"
                             android:layout_marginRight="10dp"
                             android:layout_gravity="center"
                             android:id="@+id/instagram"

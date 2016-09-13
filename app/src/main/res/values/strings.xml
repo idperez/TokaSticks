@@ -30,4 +30,6 @@
     <string name="toka_phone">tel:4809889405</string>
     <string name="four_phone">tel:4805792100</string>
     <string name="jump">Jump To Any Hole</string>
+    <string name="website">Visit Our Website</string>
+    <string name="follow">Follow Us</string>
 </resources>
