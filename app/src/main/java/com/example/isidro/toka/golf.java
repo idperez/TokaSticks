@@ -295,6 +295,7 @@ public class Golf extends Activity {
         super.onResume();
 
         startLocationService();
+        // See if hole data is still set
     }
 
     public String loadJSONData() {

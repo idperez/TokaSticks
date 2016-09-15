@@ -30,6 +30,7 @@ public class MainActivity extends Activity {
     public TextView scorecard_string;
     public TextView newsletter_string;
     public TextView tee_string;
+    public TextView follow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,7 @@ public class MainActivity extends Activity {
         scorecard_string = (TextView) findViewById(R.id.scorecard_string);
         newsletter_string = (TextView) findViewById(R.id.newsletter_string);
         tee_string = (TextView) findViewById(R.id.tee_string);
+        follow = (TextView) findViewById(R.id.follow);
 
         setFont();
     }
@@ -57,6 +59,7 @@ public class MainActivity extends Activity {
     private void setFont() {
         Typeface font_1 = Typeface.createFromAsset(getAssets(), "fonts/DroidSerif-Italic.ttf");
         title.setTypeface(font_1);
+        follow.setTypeface(font_1);
 
         Typeface font_2 = Typeface.createFromAsset(getAssets(), "fonts/DroidSerif-Regular.ttf");
         weather_string.setTypeface(font_2);

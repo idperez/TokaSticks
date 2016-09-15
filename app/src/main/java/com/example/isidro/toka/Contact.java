@@ -2,10 +2,12 @@ package com.example.isidro.toka;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.view.View;
+import android.widget.TextView;
 
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
@@ -23,13 +25,50 @@ public class Contact extends Activity {
     private View twitter;
     private View instagram;
 
+    private TextView contactTitle;
+    private TextView callUs;
+    private TextView tokaCallString;
+    private TextView fourCallString;
+    private TextView visitWeb;
+    private TextView tokaWebString;
+    private TextView fourWebString;
+    private TextView followUs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact);
 
+        setText();
         setBottomBar();
         setViews();
+    }
+
+    private void setText() {
+        contactTitle = (TextView) findViewById(R.id.contact_title);
+        callUs = (TextView) findViewById(R.id.call_us);
+        tokaCallString = (TextView) findViewById(R.id.call_toka_string);
+        fourCallString = (TextView) findViewById(R.id.call_four_string);
+        visitWeb = (TextView) findViewById(R.id.website_string);
+        tokaWebString = (TextView) findViewById(R.id.toak_web_string);
+        fourWebString = (TextView) findViewById(R.id.four_web_string);
+        followUs = (TextView) findViewById(R.id.follow);
+
+        setFonts();
+    }
+
+    private void setFonts() {
+        Typeface font_1 = Typeface.createFromAsset(getAssets(), "fonts/DroidSerif-Italic.ttf");
+        contactTitle.setTypeface(font_1);
+        callUs.setTypeface(font_1);
+        visitWeb.setTypeface(font_1);
+        followUs.setTypeface(font_1);
+
+        Typeface font_2 = Typeface.createFromAsset(getAssets(), "fonts/DroidSerif-Regular.ttf");
+        tokaCallString.setTypeface(font_2);
+        fourCallString.setTypeface(font_2);
+        tokaWebString.setTypeface(font_2);
+        fourWebString.setTypeface(font_2);
     }
 
     private void setViews() {
